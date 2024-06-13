@@ -1,0 +1,149 @@
+{
+  "hello": "hello, world!",
+  "footer": {
+    "contact": "contact",
+    "adress": "Cra 33a # 30-20 Bogotá D.C",
+    "phone": "(+601) 3808000 Exts. 1002, 6604, 6607, 6608",
+    "phoneLabel": "Phone",
+    "adressLabel": "Address",
+    "mailLabel": "Email",
+    "made": "Made by:",
+    "fabrica": "Solution Factory",
+    "lider": "Factory Leader",
+    "desarrolladores": "Developers"
+  },
+  "login": {
+    "title": "Log In",
+    "email": "Enter your institutional email",
+    "password": "Enter your Password",
+    "Terms": "Accept terms and conditions",
+    "Forget": "Forgot password?",
+    "Register": "Register",
+    "Login": "Get in",
+    "home": "Home"
+  },
+  "main": {
+    "general": "Registration and Control",
+    "bienestar": "Welfare",
+    "agendamientoBiblioteca": "Library Scheduling",
+    "coformacion": "Coformation",
+    "calificador": "Qualifier",
+    "certificadosLaborales": "Labor Certificates"
+  },
+  "titles": {
+    "titleGeneral": "Location and relocation management",
+    "academicInfo":"Personal and academic information",
+    "history":"Co-formation history",
+    "notiCenter":"Notification Center",
+    "profile": "Profile",
+    "changePassword": "Change Password",
+    "resetPassword": "Password Recovery",
+    "management": "Management",
+    "projects": "Universitary Services",
+    "imagen": "Change profile photo"
+
+  },
+
+  "students":{
+    
+  },
+
+  "forms": {
+    "name": "Name",
+    "users": "User",
+    "description": "Description",
+    "status": {
+      "label": "Status",
+      "enabled": "Enabled",
+      "disabled": "Disabled",
+      "canceled": "Canceled",
+      "accepted": "Accepted",
+      "completed": "Completed",
+      "onHold": "On Hold"
+    },
+    "date": "Date",
+    "hour": "Execution Time",
+    "hourStart": "Start Time",
+    "hourEnd": "End Time",
+    "yes": "Yes",
+    "no": "No",
+    "reservedSpace": "Reserved Space",
+    "reservationType": "Service",
+    "professional":"Library Staff",
+    "reservationStart":"Start Time",
+    "reservationEnd":"End Time",
+    "filter": "Filter:",
+    "spaces": "Spaces",
+    "labelpdf": "Select the filter to export the PDF",
+    "allReser": "All reservations",
+    "activeReser": "Active reservations",
+    "labelDateOPt": "Select a date:",
+    "dateRange": "Date Range",
+    "imagen": "Upload photo"
+  },
+  "buttons": {
+    "send": "Send",
+    "close": "Close",
+    "cancel": "Cancel",
+    "save": "Save",
+    "edit": "Edit",
+    "delete": "Delete",
+    "search": "Search",
+    "add": "Add",
+    "previous": "Previous",
+    "next": "Next",
+    "first": "First",
+    "last": "Last",
+    "Registry": "New reservation",
+    "logout": "Logout",
+    "changePassword": "Change Password",
+    "clearFilters":"Clear Filters",
+    "loading":"Sending...",
+    "inscription":"Enroll me"
+  },
+
+  "profile": {
+    "img" : "Change photo",
+    "photoAlt":"Profile photo",
+    "title": "Welcome,",
+    "name": "Name",
+    "email": "Email",
+    "password": "Current Password",
+    "passwordConfirm": "Confirm Password",
+    "changePassword": "New Password",
+    "code": "Verification code",
+    "status": "Status",
+    "expeditionDate": "Expedition Date",
+    "adress": "Address",
+    "gender": "Gender",
+    "relationship": "Civil State",
+    "rol": "Role",
+    "birthdate": "Birthdate",
+    "eps": "EPS",
+    "rh":"RH",
+    "multiculturalism": "Multiculturalism",
+    "states": {
+      "state": "EstUS",
+      "active": "Active",
+      "inactive": "Inactive"
+    },
+    "note": "Accepted formats: .jpeg .png .jpg and maximum size of 2048KB."
+
+  },
+  "validations": {
+    "password": {
+      "invalidFormat": "The password must contain at least 8 characters, an upper case letter, a number and a special character",
+      "notSame": "The password does not match",
+      "same": "The passwords match"
+    },
+    "nameRequired": "Name Required",
+    "nameInvalid": "Name must be between 5 and 100 alphabetic characters.", 
+    "nameProfInvalid": "Name must be between 3 and 100 alphabetic characters.", 
+    "inputRequired": "This field is required.", 
+    "dateBeforeInvalid": "Date cannot be earlier than the current date.",
+    "hourAfterInvalid": "The start time cannot be greater than the end time.",
+    "hourhigherInvalid": "The start time cannot be earlier than the current time.",
+    "hourIqualInvalid": "The start time cannot be the same as the end time.", 
+    "startTime": "You chose the current day, the start time must be greater than the current time."
+  }
+}
