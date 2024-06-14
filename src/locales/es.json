@@ -50,8 +50,17 @@
     "certificadosLaborales":"Certificados Laborales"
  
   },
-  "studetns":{
-    
+  "students":{
+    "titleGeneral": "Información general",
+    "names":"Nombres",
+    "lastNames":"Apellidos",
+    "id":"Documento de identidad",
+    "studentCode":"Código estudiantil",
+    "gender":"Género",
+    "birthdate":"Fecha de nacimiento",
+    "age":"Edad",
+    "location":"Localidad",
+    "address":"Dirección"
   },
   "forms":{
     "name":"Nombre",

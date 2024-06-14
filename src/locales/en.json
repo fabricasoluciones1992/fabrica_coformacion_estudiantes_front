@@ -45,7 +45,17 @@
   },
 
   "students":{
-    
+    "titleGeneral": "General information",
+    "names":"Names",
+    "lastNames":"Last names",
+    "id":"Identification document",
+    "studentCode":"Student code",
+    "gender":"Gender",
+    "birthdate":"Birthdate",
+    "age":"Age",
+    "location":"Location",
+    "address":"Address"
+
   },
 
   "forms": {

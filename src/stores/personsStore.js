@@ -22,7 +22,7 @@ export const usePersonsStore = defineStore('persons', () => {
   const user = CryptoJS.AES.decrypt(localStorage.getItem('id'), secretKey).toString( CryptoJS.enc.Utf8 )
   return user
 
- }
+ }  
  readUserLocal();
  const readPersonDetailsById = async () => {
   if (!readUserLocal() || !authStore.token) {
@@ -32,7 +32,7 @@ export const usePersonsStore = defineStore('persons', () => {
   try {
     const res = await axios({
       url: `${API_URL}/profile/8/${readUserLocal()}`,
-      method: 'GET',
+      method: 'GET',  
       headers: {
         Authorization: 'Bearer ' + authStore.token
       }
