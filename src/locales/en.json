@@ -33,6 +33,7 @@
   "titles": {
     "titleGeneral": "Location and relocation management",
     "academicInfo":"Personal and academic information",
+    "emergencyContact":"Edit emergency contact's  information",
     "history":"Co-formation history",
     "notiCenter":"Notification Center",
     "profile": "Profile",
@@ -54,7 +55,19 @@
     "birthdate":"Birthdate",
     "age":"Age",
     "location":"Location",
-    "address":"Address"
+    "address":"Address",
+    "program":"Program",
+    "programType":"Program Type",
+    "semester":"Semester",
+    "promotion":"Promotion",
+    "group":"Group",
+    "period":"Period",
+    "journey":"Journey",
+    "actualPhase":"Actual Phase",
+    "englishLevel":"English Level",
+    "monetaryState":"Monetary State",
+    "status":"Status",
+    "actions":"Actions"
 
   },
 
@@ -131,7 +144,17 @@
     "birthdate": "Birthdate",
     "eps": "EPS",
     "rh":"RH",
+    "personalEmail":"Personal Email",
+    "personalSupportEmail":"Personal Support Email",
+    "militaryPassbook":"military Passbook",
     "multiculturalism": "Multiculturalism",
+    "allergies":"Sllergies",
+    "diseases":"Siseases",
+    "bloodType":"Slood Type",
+    "studentType":"Student Type",
+    "socialStratum":"Social Stratum",
+    "daily":"Daily",
+    "nightly":"Nightly",
     "states": {
       "state": "EstUS",
       "active": "Active",
@@ -155,5 +178,24 @@
     "hourhigherInvalid": "The start time cannot be earlier than the current time.",
     "hourIqualInvalid": "The start time cannot be the same as the end time.", 
     "startTime": "You chose the current day, the start time must be greater than the current time."
-  }
+  },
+  "modalStudCreate":{
+      "studentsInfo":"Personal information about",
+      "studentsName":"Names",
+      "studentsCode":"Student code",
+      "studentsGender":"Gender",
+      "studentsAge":"Age",
+      "studentsAdicInfo":"Aditional information",
+      "studentsAcademInfo":"Academic information",
+      "studentsEmergencyContInfo":"Emergency contact",
+      "studentsContactInfo":"Contact information",
+      "studentName":"Student name",
+      "studentLastName":"Student lastname",
+      "studentDocument":"Identification number",
+      "contactName":"Contact name",
+      "contactEmail":"Contact email",
+      "contactParentage":"Parentage",
+    "contactTelephone":"Telephone",
+    "companiesDocuments":"Required Documents"
+    }
 }

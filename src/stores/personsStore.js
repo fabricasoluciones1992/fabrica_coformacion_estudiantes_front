@@ -15,6 +15,7 @@ export const usePersonsStore = defineStore('persons', () => {
   
   //parseInt(user);
   const API_URL = 'http://127.0.0.1:8088/api'
+  const SEC_API_IRL = 'http://127.0.0.1:8000/api'
   const persons = ref([])
   
   const { t } = useI18n()
@@ -32,14 +33,29 @@ export const usePersonsStore = defineStore('persons', () => {
   try {
     const res = await axios({
       url: `${API_URL}/profile/8/${readUserLocal()}`,
-      method: 'GET',  
+      method: 'GET',    
       headers: {
         Authorization: 'Bearer ' + authStore.token
       }
     })
    
     persons.value = res.data.data
-    
+    console.log(persons.value)
+    try{
+      const response = await axios({
+        url: `${SEC_API_IRL}/students/${persons.value.per_document}`,
+        method: 'GET',    
+        headers: {
+          Authorization: 'Bearer ' + authStore.token
+        }
+      })
+
+      persons.value = response.data.data.data
+      console.log(persons.value)
+      
+    }catch(e){
+      handleError(e)
+    }
     } catch (error) {
       handleError(error)
     }
@@ -135,12 +151,47 @@ export const usePersonsStore = defineStore('persons', () => {
     }
   }
 
+  const updateEmergencyContacts = async (con_id, con_name, con_mail, con_telephone, rel_id, per_id) => {
+    try {
+      console.log(con_id, con_name, con_mail, con_telephone, rel_id, per_id)
+      axios.defaults.headers.common['Authorization'] = 'Bearer ' + authStore.token;
+      const res = await axios({
+        url: `${API_URL}/contacts/${con_id}`, 
+        method: 'PUT', 
+        headers: {
+          Authorization: 'Bearer ' + authStore.token
+        },
+        data: {
+          con_name: con_name,
+          con_mail: con_mail,
+          con_telephone: con_telephone,
+          rel_id: rel_id,
+          per_id: per_id,
+          use_id: readUserLocal()
+        }
+      });
+      
+      if (res.data.status === false) {
+        showSwalAlert(res.data.message, 'error','error');
+      } else if (res.data.status === true) {
+        showSwalAlert(res.data.message, 'success','success');
+        console.log(res.data.message);
+      }
+
+     
+    } catch (error) {
+    console.error(error.response?.data || error);
+    handleError(error);
+    }
+  };
+
 
   return {
     readPersonDetailsById,
     updatePassword,
     updatePhoto,
     usePersonsStore,
-    persons
+    persons,
+    updateEmergencyContacts
   }
 })

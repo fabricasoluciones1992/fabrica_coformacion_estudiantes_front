@@ -3,36 +3,46 @@ import { ref } from 'vue'
 import axios from 'axios'
 import { useAuthStore } from '../authStore.js'
 import Swal from 'sweetalert2'
+import { showSwalAlert } from '@/validations.js'
 // import {show_alerta} from "../funtions.js"
 
 export const useStudentStore = defineStore('students', () => {
   const authStore = useAuthStore()
-  const URL_STUDENTS = `/students/`
+ const API_URL = 'http://127.0.0.1:8088/api'
+  const SEC_API_IRL = 'http://127.0.0.1:8000/api'
   const students = ref([])
-  const student = ref([])
+  const student = ref([]) 
 
   // Esta función se utiliza para leer los Estudiantes
   const readStudents = async () => {
     try {
-      axios.defaults.headers.common['Authorization'] = 'Bearer ' + authStore.token
-      const res = await axios.get(URL_STUDENTS)
-      students.value = res.data.data.data.map((item) => {
-        return {
-          stu_id: item.stu_id,
-          per_document: item.per_document,
-          doc_typ_id: item.doc_typ_id,
-          doc_typ_name: item.doc_typ_name,
-          doc_typ: item.doc_typ,
-          per_name: item.per_name,
-          per_lastname: item.per_lastname,
-          career: item.career,
-          stu_enr_semester: item.stu_enr_semester,
-          pro_name: item.pro_name,
-          mon_sta_name: item.mon_sta_name,
-          stu_enr_status: item.stu_enr_status,
-          car_name: item.car_name
+      const res = await axios({
+        url: `${SEC_API_IRL}/students`,
+        method: 'GET',    
+        headers: {
+          Authorization: 'Bearer ' + authStore.token
         }
       })
+      console.log(res.data.data)
+      students.value = res.data.data
+      
+      // .data.map((item) => {
+      //   return {
+      //     stu_id: item.stu_id,
+      //     per_document: item.per_document,
+      //     doc_typ_id: item.doc_typ_id,
+      //     doc_typ_name: item.doc_typ_name,
+      //     doc_typ: item.doc_typ,
+      //     per_name: item.per_name,
+      //     per_lastname: item.per_lastname,
+      //     career: item.career,
+      //     stu_enr_semester: item.stu_enr_semester,
+      //     pro_name: item.pro_name,
+      //     mon_sta_name: item.mon_sta_name,
+      //     stu_enr_status: item.stu_enr_status,
+      //     car_name: item.car_name
+      //   }
+      // })
       for (var i = 0; i <= students.value.length - 1; i++) {
         switch (students.value[i].doc_typ_id) {
           case 1:
@@ -60,7 +70,7 @@ export const useStudentStore = defineStore('students', () => {
     try {
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + authStore.token
       const res = await axios({
-        url: `/students/${stu_id}`,
+        url: `${SEC_API_IRL}/students/${stu_id}`,
         method: 'GET',
         headers: {
           Authorization: 'Bearer ' + authStore.token
@@ -131,6 +141,34 @@ export const useStudentStore = defineStore('students', () => {
   //     handleError(error);
   //   }
   // };
+  const updateEmergencyContacts = async (cos_cen_id, cos_cen_code, cos_cen_name ) => {
+    try {
+      axios.defaults.headers.common['Authorization'] = 'Bearer ' + authStore.token;
+      const res = await axios({
+        url: `${API_URL}/${cos_cen_id}`, 
+        method: 'PUT', 
+        headers: {
+          Authorization: 'Bearer ' + authStore.token
+        },
+        data: {
+          cos_cen_code: cos_cen_code,
+          cos_cen_name: cos_cen_name
+        }
+      });
+      
+      if (res.data.status === false) {
+        showSwalAlert(res.data.message, 'error','error');
+      } else if (res.data.status === true) {
+        showSwalAlert(res.data.message, 'success','success');
+        console.log(res.data.message);
+      }
+
+    } catch (error) {
+    console.error(error.response?.data || error);
+    handleError(error);
+    }
+  };
+
 
   const handleError = (error) => {
     if (error.response) {
@@ -152,6 +190,7 @@ export const useStudentStore = defineStore('students', () => {
     readStudents,
     students,
     student,
-    showStudent
+    showStudent,
+    updateEmergencyContacts
   }
 })
