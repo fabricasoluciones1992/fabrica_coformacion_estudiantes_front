@@ -178,7 +178,7 @@ export const usePersonsStore = defineStore('persons', () => {
         console.log(res.data.message);
       }
 
-     
+     readPersonDetailsById()
     } catch (error) {
     console.error(error.response?.data || error);
     handleError(error);

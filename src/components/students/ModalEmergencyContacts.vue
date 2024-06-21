@@ -46,11 +46,12 @@
               <div class="row col-sm-12 col-md-6 mt-3 ms-2">
                 <div class="col-12 mt-3">
                   <label class="form-label">{{ $t('modalStudCreate.contactParentage') }}</label>
-                    <select class="form-select shadow">
+                    <select v-model="rel_id" class="form-select shadow">
                       <option
                         v-for="relationshipItem in generalStore.relationships"
                         :key="relationshipItem.rel_id"
-                        :value="relationshipItem.rel_name"
+                        :value="relationshipItem.rel_id"
+                        
                       >
                         {{ relationshipItem.rel_name }}
                       </option>

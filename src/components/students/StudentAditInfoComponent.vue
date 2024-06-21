@@ -1,4 +1,5 @@
 <template>
+  
   <div
     class="tab-pane fade"
     id="aditional-info"
@@ -80,7 +81,8 @@ const props = defineProps({
   student: {
     type: Object,
     required: true
-  }
+  },
+  loading: Boolean
 })
 
 const stu_stratum = ref(props.student ? props.student.stu_stratum || '' : '')

@@ -98,23 +98,27 @@
       class="tab-content my-5"
       @submit.prevent="storeDocuments, changePhoto, sendRegisterCompany"
     >
-      <StudentInfoComponent 
-      :student="studentItem"
-      ></StudentInfoComponent>
-      
+      <StudentInfoComponent :student="studentItem" :loading="loading"></StudentInfoComponent>
+
       <EmergencyContactStudentInfoComponent
         :contacts="studentItem"
+        :loading="loading"
       ></EmergencyContactStudentInfoComponent>
 
       <StudentContactInfoComponent
         :studentContactInfo="studentItem.personal_contacts"
+        :loading="loading"
       ></StudentContactInfoComponent>
 
-      <StudentAditInfoComponent 
-      :student="studentItem"
+      <StudentAditInfoComponent
+        :student="studentItem"
+        :loading="loading"
       ></StudentAditInfoComponent>
 
-      <StudentAcademicInfoComponent :student="studentItem"></StudentAcademicInfoComponent>
+      <StudentAcademicInfoComponent
+        :student="studentItem"
+        :loading="loading"
+      ></StudentAcademicInfoComponent>
 
       <!-- <StudentDocumentsComponent :student="studentItem"></StudentDocumentsComponent> -->
     </form>
@@ -146,15 +150,17 @@ const studentItem = ref('')
 const loading = ref(false)
 // const loadingButton = ref(false)
 console.log(personStore.stu_id)
-
+console.log(loading.value)
 onMounted(async () => {
+  loading.value = true
   await generalStore.readRelationships()
   await personStore.readPersonDetailsById()
-  await studentsStore.showStudent(personStore.persons.per_document)
+  studentItem.value = personStore.persons
   await generalStore.readLocalities()
   await generalStore.readContacts(personStore.persons.per_id)
-  studentItem.value = studentsStore.student
+
   console.log(studentItem.value)
+  
   for (let i = 0; i < studentItem.value.personal_contacts.telephones.length; i++) {
     // console.log(studentItem.value.personal_contacts.telephones[i]);
     switch (studentItem.value.personal_contacts.telephones[i].tel_description) {
@@ -167,9 +173,9 @@ onMounted(async () => {
           studentItem.value.personal_contacts.telephones[i].tel_number
         break
       case 'EMERGENCIA':
-      studentItem.value.personal_contacts.tel_backup =
-        studentItem.value.personal_contacts.telephones[i].tel_number
-      break
+        studentItem.value.personal_contacts.tel_backup =
+          studentItem.value.personal_contacts.telephones[i].tel_number
+        break
       case 'FIJO':
         studentItem.value.personal_contacts.tel_landline =
           studentItem.value.personal_contacts.telephones[i].tel_number
@@ -183,18 +189,22 @@ onMounted(async () => {
     // console.log(studentItem.value.personal_contacts.telephones[i]);
     switch (studentItem.value.personal_contacts.mails[i].mai_description) {
       case 'INSTITUCIONAL':
-        studentItem.value.personal_contacts.mai_institutional = studentItem.value.personal_contacts.mails[i].mai_mail
+        studentItem.value.personal_contacts.mai_institutional =
+          studentItem.value.personal_contacts.mails[i].mai_mail
         break
       case 'PERSONAL':
-        studentItem.value.personal_contacts.mai_personal = studentItem.value.personal_contacts.mails[i].mai_mail
+        studentItem.value.personal_contacts.mai_personal =
+          studentItem.value.personal_contacts.mails[i].mai_mail
         break
 
       case 'EMERGENCIA':
-      studentItem.value.personal_contacts.tel_backup = studentItem.value.personal_contacts.mails[i].mai_mail
+        studentItem.value.personal_contacts.tel_backup =
+          studentItem.value.personal_contacts.mails[i].mai_mail
         break
 
       case 'FIJO':
-        studentItem.value.personal_contacts.tel_landline = studentItem.value.personal_contacts.mails[i].mai_mail
+        studentItem.value.personal_contacts.tel_landline =
+          studentItem.value.personal_contacts.mails[i].mai_mail
         break
       default:
         break

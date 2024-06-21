@@ -1,4 +1,5 @@
 <template>
+ 
   <div
     class="tab-pane fade row"
     id="emergency-contact-info"
@@ -78,13 +79,16 @@
 import { ref, defineProps, watchEffect, onMounted } from 'vue'
 import { countriesList } from '@/countryCode.js'
 import { useGeneralStore } from '@/stores/generalStore.js'
+import { usePersonsStore } from '@/stores/personsStore.js'
 import ModalEmergencyContacts from './ModalEmergencyContacts.vue';
+
 
 const props = defineProps({
   contacts: {
     type: Object,
     required: true
-  }
+  },
+  loading: Boolean
 })
 
 const con_id = ref('')
@@ -96,11 +100,17 @@ const per_id = ref('')
 
 const editing = ref(false)
 
+const personsStore = usePersonsStore()
 const generalStore = useGeneralStore()
 const contactsArray = ref([])
 const defaultCountry = '+57'
 
-onMounted(async () => {})
+
+onMounted(async () => {
+ 
+  await personsStore.readPersonDetailsById()
+
+})
 const prepareEditForm = (contactItem) => {
   console.log(contactsArray.value)
   con_id.value = contactItem.con_id

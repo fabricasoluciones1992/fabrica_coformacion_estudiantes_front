@@ -1,5 +1,6 @@
-q
+
 <template>
+ 
   <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
     <div class="row shadow pb-3 mb-5 bg-body rounded">
       <div class="row col-6 col-sm-12 col-md-6 mt-3 ms-2">
@@ -65,7 +66,8 @@ const props = defineProps({
   studentContactInfo: {
     type: Object,
     required: true
-  }
+  },
+  loading: Boolean
 })
 
 const defaultCountry = '+57'

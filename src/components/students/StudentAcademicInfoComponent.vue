@@ -1,4 +1,5 @@
 <template>
+ 
   <div
     class="tab-pane fade"
     id="academic-info"
@@ -66,7 +67,8 @@ const props = defineProps({
   student: {
     type: Object,
     required: true
-  }
+  },
+  loading: Boolean
 })
 
 

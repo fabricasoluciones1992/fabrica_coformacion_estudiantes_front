@@ -1,6 +1,7 @@
 <template>
+  
   <div
-    v-if="!loading"
+   
     class="tab-pane fade show active"
     id="student-info"
     role="tabpanel"
@@ -140,7 +141,7 @@
 import { ref, onMounted, computed} from 'vue'
 import { usePersonsStore } from '@/stores/personsStore.js'
 const profileStore = usePersonsStore()
-const loading = ref(true)
+
 const profileImage = computed(() => profileStore.persons.use_photo)
 console.log(profileImage.value)
 
@@ -171,9 +172,12 @@ const age = computed(() =>{
 
 console.log(idAbr)
 
-onMounted(async () => {
-  // await profileStore.readPersonDetailsById()
-  loading.value = false
+const props = defineProps({
+  student: {
+    type: Object,
+    required: true
+  },
+  loading: Boolean
 })
 
 console.log(profileStore)
