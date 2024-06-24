@@ -11,7 +11,6 @@
     "lider": "Lider de Fábrica",
     "desarrolladores": "Desarrolladores"
   },
-  
   "login":{
     "title":"Iniciar Sesión",
     "email":"Ingrese su correo institucional",
@@ -25,7 +24,7 @@
   "titles": {
     "titleGeneral": "Gestión de ubicación y reubicación",
     "academicInfo":"Información personal y académica",
-    "history":"Historial de coformaciónn",
+    "history":"Historial de coformación",
     "notiCenter":"Centro de notificaciones",
     "emergencyContact":"Editar la infomarción del contacto de emergencia",
     "profile": "Perfil",
@@ -35,10 +34,7 @@
     "pdf": "Generar PDF",
     "projects": "Servicios Universitarios",
     "photo": "Cambiar foto de perfil"
-
-
   },
-
   "services":{
     "calendar":"Calendario de servicios activos"
   },
@@ -49,7 +45,6 @@
     "coformacion":"Coformación",
     "calificador":"Calificador",
     "certificadosLaborales":"Certificados Laborales"
- 
   },
   "students":{
     "titleGeneral": "Información general",
@@ -87,6 +82,34 @@
     "btnViewCofStudents":"Ver Coformacion",
     "studentAge":"Años"
   },
+  "cofHistory":{
+    "companies":{
+     "name":"Nombre empresa",
+     "companyName":"Razón Social",
+     "address":"Dirección",
+     "startDate":"Fecha de Inicio",
+     "endDate":"Fecha de Fin",
+     "workDays":"Días fase empresa",
+     "workSchedule":"Horario Fase empresa",
+     "contractType":"Tipo de contrato",
+     "stipend":"Auxilio",
+     "payType":"Forma de Auxilio",
+     "payFrecuency":"Perioridad de Auxilio",
+     "compSup":"Tutor Empresarial",
+     "academicAd":"Profesor Acompañamiento",
+     "remarks":"Observaciones",
+     "reason":"Razón de vinculación a la empresa",
+      "to":"a"
+    },
+    "cards":{
+      "actComp":"Empresa Actual",
+      "recentComp":"Empresa reciente",
+      "recentProcess":"Proceso Reciente",
+      "historyProcess":"Historial de procesos",
+      "history":"Historial",
+      "historyComp":"Historial de empresas"
+    }
+  },
   "forms":{
     "name":"Nombre",
     "users": "Usuario",
@@ -119,7 +142,6 @@
     "labelDateOPt": "Selecciona una fecha:",
     "dateRange": "Rango de fechas",
     "imagen": "Cargar imagen"
-    
   },
   "buttons":{
     "send":"Enviar",

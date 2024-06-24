@@ -3,7 +3,7 @@
     <LoadingComponent></LoadingComponent>
   </div>
   <div v-else class="container">
-    <h2 class="mb-4 mt-5 text-danger text-center">{{ studentsStore.student.per_name }}</h2>
+    <h2 class="mb-4 mt-5 text-danger text-center">{{ studentsStore.student.per_name }} {{ studentsStore.student.per_lastname }}</h2>
     <!-- Nav tabs -->
     <ul class="nav nav-tabs" id="myTab" role="tablist">
       <li class="nav-item" role="presentation">

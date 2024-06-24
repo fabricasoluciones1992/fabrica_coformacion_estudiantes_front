@@ -70,7 +70,34 @@
     "actions":"Actions"
 
   },
-
+  "cofHistory":{
+    "companies":{
+     "name":"Name",
+     "companyName":"Company name",
+     "address":"Company address",
+     "startDate":"Start date",
+     "endDate":"End date",
+     "workDays":"Corporate Phase Working Days",
+     "workSchedule":"Corporate Phase Schedule",
+     "contractType":"Contract Type",
+     "stipend":"Stipend",
+     "payType":"Stipend Payment Type",
+     "payFrecuency":"Stipend Frecuency",
+     "compSup":"Company Supervisor",
+     "academicAd":"Academic Advisor",
+     "remarks":"Remarks",
+     "reason":"Afiliation Reason",
+     "to":"To"
+    },
+    "cards":{
+      "actComp":"Actual Company",
+      "recentComp":"Recent Company",
+      "recentProcess":"Most Recent Process",
+      "historyProcess":"Process History",
+      "history":"History",
+      "historyComp":"Companies History"
+    }
+  },
   "forms": {
     "name": "Name",
     "users": "User",

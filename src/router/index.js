@@ -28,7 +28,7 @@ const router = createRouter({
         {
           path: '/academic/info',
           name: 'academicInfo',
-          component: () => import('../views/historyCoformation.vue'),
+          component: () => import('../views/historyCoformationView.vue'),
           meta: {
             auth: true
           }

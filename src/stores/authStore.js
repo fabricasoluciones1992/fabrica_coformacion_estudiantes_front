@@ -36,7 +36,6 @@ export const useAuthStore = defineStore('user', () => {
         window.location.href = 'http://localhost:5173/logout';
           
         }
-      
       router.push('/students');
     } catch (error) {
       handleError(error);
