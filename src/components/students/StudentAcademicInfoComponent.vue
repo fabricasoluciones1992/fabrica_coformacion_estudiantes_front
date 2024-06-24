@@ -82,7 +82,7 @@ const stu_enr_journey = computed(() => {
   if (props.student && props.student.stu_enr_journey === 0) {
     return t('profile.daily');
   } else if (props.student && props.student.stu_enr_journey === 1) {
-    return t('profile.nigtly');
+    return t('profile.nightly');
   } else {
     return "Nanai";
   }

@@ -125,7 +125,7 @@
   </div>
 </template>
 <script setup>
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 import { validateFields } from '@/validations.js'
 import { useStudentStore } from '@/stores/studentsStores/studentsStore.js'
 import { useGeneralStore } from '@/stores/generalStore.js'
@@ -156,7 +156,6 @@ onMounted(async () => {
   await generalStore.readRelationships()
   await personStore.readPersonDetailsById()
   studentItem.value = personStore.persons
-  await generalStore.readLocalities()
   await generalStore.readContacts(personStore.persons.per_id)
 
   console.log(studentItem.value)
@@ -212,6 +211,15 @@ onMounted(async () => {
   }
   loading.value = false
 })
+
+// Actualizar la imagen si cambia en el store
+watch(
+  () => personStore.persons.use_photo,
+  (newValue) => {
+    personStore.value = newValue;
+  }
+);
+
 
 // const validateNameWrapper = () => {
 //   const fields = [{ name: 'per_name', value: per_name.value }]

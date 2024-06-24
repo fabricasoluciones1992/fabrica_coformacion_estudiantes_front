@@ -138,14 +138,25 @@
   </div>
 </template>
 <script setup>
-import { ref, onMounted, computed} from 'vue'
+import { ref, onMounted, computed, watch} from 'vue'
 import { usePersonsStore } from '@/stores/personsStore.js'
 const profileStore = usePersonsStore()
 
-const profileImage = computed(() => profileStore.persons.use_photo)
-console.log(profileImage.value)
+const profileImage = computed(() => profileStore.persons.use_photo
+  // Escuchar evento para actualizar la imagen
+  ,
+console.log(profileImage.value))
 
-// eslint-disable-next-line vue/return-in-computed-property
+
+// Actualizar la imagen si cambia en el store
+watch(
+  () => profileStore.persons.use_photo,
+  (newValue) => {
+    profileImage.value = newValue;
+  }
+);
+
+
 const idAbr = computed(() => {
   switch (profileStore.persons.doc_typ_id) {
     case 1:
@@ -172,13 +183,6 @@ const age = computed(() =>{
 
 console.log(idAbr)
 
-const props = defineProps({
-  student: {
-    type: Object,
-    required: true
-  },
-  loading: Boolean
-})
 
 console.log(profileStore)
 </script>

@@ -127,6 +127,7 @@ export const usePersonsStore = defineStore('persons', () => {
         t('errors.passActual')
       )
       
+      readPersonDetailsById()
     
     } catch (error) {
       // console.log(error.response.data.message)
@@ -147,6 +148,7 @@ export const usePersonsStore = defineStore('persons', () => {
           text: 'Error: Se produjo un error inesperado'
         });
         // console.error('Error inesperado:', error.message);
+
       }
     }
   }
