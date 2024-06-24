@@ -1,5 +1,5 @@
 <template>
-  <div class="container p-5">
+  <div class="container">
     <!-- Modal -->
     <div
       class="modal fade border-primary"

@@ -53,6 +53,17 @@
           <input disabled class="form-control shadow" v-model="tel_landline" />
         </div>
       </div>
+      <div class="mt-4 col text-end mr-4">
+        <button
+        @click="prepareEditForm(contactItem)"
+          class="shadow btn btn-danger"
+          type="button"
+          data-bs-toggle="modal"
+          data-bs-target="#editModal"
+        >
+          {{ $t('buttons.edit') }}
+        </button>
+      </div>
     </div>
   </div>
 </template>
@@ -79,6 +90,8 @@ const tel_backup = ref(props.studentContactInfo ? props.studentContactInfo.tel_b
 const tel_landline = ref(props.studentContactInfo ? props.studentContactInfo.tel_landline || '' : '')
 const telephoneInfoArray = ref([])
 const mailInfoArray = ref([])
+
+
 
 watchEffect(() => {
 

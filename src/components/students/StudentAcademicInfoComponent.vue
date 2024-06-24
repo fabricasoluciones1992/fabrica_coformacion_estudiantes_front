@@ -45,7 +45,7 @@
         </div>
         <div class="col-6">
           <label class="form-label mt-3">{{ $t('students.englishLevel') }}</label>
-          <input disabled class="form-control" type="text" v-model="mul_name" />
+          <input disabled class="form-control" type="text" v-model="pha_name" />
         </div>
         <div class="col-6">
           <label class="form-label mt-3">{{ $t('students.monetaryState') }}</label>

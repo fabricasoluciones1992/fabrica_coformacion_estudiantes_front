@@ -144,17 +144,16 @@ const profileStore = usePersonsStore()
 
 const profileImage = computed(() => profileStore.persons.use_photo
   // Escuchar evento para actualizar la imagen
-  ,
-console.log(profileImage.value))
+ )
 
 
 // Actualizar la imagen si cambia en el store
-watch(
-  () => profileStore.persons.use_photo,
-  (newValue) => {
-    profileImage.value = newValue;
-  }
-);
+// watch(
+//   () => profileStore.persons.use_photo,
+//   (newValue) => {
+//     profileImage.value = newValue;
+//   }
+// );
 
 
 const idAbr = computed(() => {
