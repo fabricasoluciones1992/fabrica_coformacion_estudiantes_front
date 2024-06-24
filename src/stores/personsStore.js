@@ -187,6 +187,38 @@ export const usePersonsStore = defineStore('persons', () => {
     }
   };
 
+  const updateContactInfo = async (mai_id, mai_mail, mai_description, per_id) => {
+    try {
+      console.log(mai_id, mai_mail, mai_description, per_id)
+      axios.defaults.headers.common['Authorization'] = 'Bearer ' + authStore.token;
+      const res = await axios({
+        url: `${API_URL}/mails/${mai_id}`, 
+        method: 'PUT', 
+        headers: {
+          Authorization: 'Bearer ' + authStore.token
+        },
+        data: {
+          mai_mail: mai_mail,
+          mai_description: mai_description,
+          per_id: per_id,
+          use_id: readUserLocal()
+        }
+      });
+      
+      if (res.data.status === false) {
+        showSwalAlert(res.data.message, 'error','error');
+      } else if (res.data.status === true) {
+        showSwalAlert(res.data.message, 'success','success');
+        console.log(res.data.message);
+      }
+
+     readPersonDetailsById()
+    } catch (error) {
+    console.error(error.response?.data || error);
+    handleError(error);
+    }
+  };
+
 
   return {
     readPersonDetailsById,
@@ -194,6 +226,7 @@ export const usePersonsStore = defineStore('persons', () => {
     updatePhoto,
     usePersonsStore,
     persons,
-    updateEmergencyContacts
+    updateEmergencyContacts,
+    updateContactInfo
   }
 })

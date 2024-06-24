@@ -1,80 +1,63 @@
 <template>
-  
   <div
     class="tab-pane fade"
     id="aditional-info"
     role="tabpanel"
     aria-labelledby="aditional-info-tab"
   >
-    <div class="row shadow p-3 bg-body rounded mb-5">
-      <div class="row mt-3 ms-2">
-        <div class="col-6">
-          <label class="form-label">{{ $t('profile.socialStratum') }}</label>
-          <input disabled class="form-control" type="text" v-model="stu_stratum" />
-        </div>
+    <div class="row p-3">
+      <div class="col-6-5 shadow p-3 bg-body rounded mb-5 mr-2">
+        <div class="row mt-3 ms-2">
+          <div class="col-6">
+            <label class="form-label">{{ $t('profile.socialStratum') }}</label>
+            <input disabled class="form-control" type="text" v-model="stu_stratum" />
+          </div>
 
-        <div class="col-6">
-          <label class="form-label">{{ $t('profile.relationship') }}</label>
-          <input disabled class="form-control" type="text" v-model="civ_sta_name" />
-        </div>
+          <div class="col-6">
+            <label class="form-label">{{ $t('profile.relationship') }}</label>
+            <input disabled class="form-control" type="text" v-model="civ_sta_name" />
+          </div>
 
-        <div class="col-6">
-          <label class="form-label mt-3">{{ $t('profile.eps') }}</label>
-          <input disabled class="form-control" type="text" v-model="eps_name" />
-        </div>
+          <div class="col-6">
+            <label class="form-label mt-3">{{ $t('profile.eps') }}</label>
+            <input disabled class="form-control" type="text" v-model="eps_name" />
+          </div>
 
-        <div class="col-6">
-          <label class="form-label mt-3">{{ $t('profile.bloodType') }}</label>
-          <input disabled class="form-control" type="text" v-model="per_rh" />
+          <div class="col-6">
+            <label class="form-label mt-3">{{ $t('profile.bloodType') }}</label>
+            <input disabled class="form-control" type="text" v-model="per_rh" />
+          </div>
+          <div class="col-6">
+            <label class="form-label mt-3">{{ $t('profile.multiculturalism') }}</label>
+            <input disabled class="form-control" type="text" v-model="mul_name" />
+          </div>
+          <div class="col-6">
+            <label class="form-label mt-3">{{ $t('profile.militaryPassbook') }}</label>
+            <input disabled class="form-control" type="text" v-model="stu_military" />
+          </div>
+          <div class="col-12">
+            <label class="form-label mt-3">{{ $t('profile.studentType') }}</label>
+            <input disabled class="form-select" type="text" v-model="stu_typ_name" />
+          </div>
         </div>
-        <div class="col-6">
-          <label class="form-label mt-3">{{ $t('profile.diseases') }}</label>
-          <select  class="form-select" v-model="disease.dis_name">
-          <option v-for="medicalInfoItem in medical_info.diseases" :key="medicalInfoItem.dis_id" :value="medicalInfoItem.dis_name">
-            {{ medicalInfoItem.dis_name }}
-          </option>
-        </select>
-        </div>
-        <div class="col-6">
-          <label class="form-label mt-3">{{ $t('profile.allergies') }}</label>
-          <select class="form-select" v-model="allergie.all_name">
-          <option v-for="medicalInfoItem in medical_info.allergies" :key="medicalInfoItem.all_id" :value="medicalInfoItem.all_name">
-            {{ medicalInfoItem.all_name }}
-          </option>
-        </select>
-        </div>
-        <div class="col-6 border-bottom border-primary ">
-          <label class="form-label my-4 w-75 ">{{ $t('modalStudCreate.studentDiseases') }}</label> +
-        </div>
-        <div class="col-6 border-bottom border-primary">
-          <label class="form-label my-4 w-75">{{ $t('modalStudCreate.studentAllergies') }}</label> +
-        </div>
-        <div class="col-6">
-          <label class="form-label mt-3">{{ $t('profile.multiculturalism') }}</label>
-          <input disabled class="form-control" type="text" v-model="mul_name" />
-        </div>
-        <div class="col-6">
-          <label class="form-label mt-3">{{ $t('profile.militaryPassbook') }}</label>
-          <input disabled class="form-control" type="text" v-model="stu_military" />
-        </div>
-        <div class="col-12">
-          <label class="form-label mt-3">{{ $t('profile.studentType') }}</label>
-          <input disabled class="form-select" type="text" v-model="stu_typ_name" />
-        </div>
-
-       
-
-        <pre>
-          {{ allergie }}
-        </pre>
+      </div>
+      <div class="col-5 shadow p-3 bg-body rounded mb-5">
+        <tableDiseases
+        :disease="disease"
+        
+        />
+        <tableAllergies
+        :allergies="allergie"
+        />
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-
-import { ref, defineProps, watchEffect } from 'vue'
+import { ref, defineProps, watchEffect, computed } from 'vue'
+import tableDiseases from "@/components/students/studentsTables/studentDiseaseTables.vue"
+import tableAllergies from "@/components/students/studentsTables/studentAllergiesTable.vue"
 // import { useGeneralStore } from '../../stores/generalStore.js'
 
 const props = defineProps({
@@ -92,12 +75,13 @@ const per_rh = ref(props.student ? props.student.per_rh || '' : '')
 const stu_military = ref(props.student ? props.student.stu_military || '' : '')
 const mul_name = ref(props.student ? props.student.mul_name || '' : '')
 const stu_typ_name = ref(props.student ? props.student.stu_typ_name || '' : '')
-const medical_info = ref([props.student ? props.student.medical_info || '' : ''])
-const allergie = ref([props.student ? props.student.medical_info.allergies || '' : ''])
-const disease = ref([props.student ? props.student.medical_info.diseases || '' : ''])
+const medical_info = ref(props.student ? props.student.medical_info || {} : {})
+const allergie = ref(medical_info.value.allergies || [])
+const disease = ref(medical_info.value.diseases || [])
 
+// const searchTerm = ref('')
 
-watchEffect (() =>{
+watchEffect(() => {
   stu_stratum.value = props.student.stu_stratum || ''
   civ_sta_name.value = props.student.civ_sta_name || ''
   stu_military.value = props.student.stu_military || ''
@@ -105,12 +89,28 @@ watchEffect (() =>{
   per_rh.value = props.student.per_rh || ''
   eps_name.value = props.student.eps_name || ''
   mul_name.value = props.student.mul_name || ''
-  if (props.student) {
-    medical_info.value = props.student.medical_info || ''
-    allergie.value = props.student.medical_info.allergies[0] || ''
-    disease.value = props.student.medical_info.diseases[0] || ''
-  }
+  medical_info.value = props.student.medical_info || {}
+  allergie.value = medical_info.value.allergies || []
+  disease.value = medical_info.value.diseases || []
 })
+
+// const filter = computed(() => {
+//   const lowerSearchTerm = searchTerm.value.toLowerCase()
+//   return props.student.medical_info[0].filter((diseaseItem) => {
+//     const matchesId = diseaseItem.dis_id.toString().includes(lowerSearchTerm)
+//     const matchesName = diseaseItem.dis_name.toLowerCase().includes(lowerSearchTerm)
+//     return matchesId || matchesName
+//   })
+// })
+
+
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+
+
+.col-6-5{
+width: 57.7%;
+}
+
+</style>

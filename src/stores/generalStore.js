@@ -57,6 +57,7 @@ export const useGeneralStore = defineStore('general_store', () => {
       handleError(error)
     }
   }
+  
 
   // Esta función se utiliza para leer las localidades
   const readCountries = async () => {

@@ -3,7 +3,7 @@ import { ref } from 'vue'
 import axios from 'axios'
 import { useAuthStore } from '../authStore.js'
 import Swal from 'sweetalert2'
-import { showSwalAlert } from '@/validations.js'
+
 // import {show_alerta} from "../funtions.js"
 
 export const useStudentStore = defineStore('students', () => {
@@ -141,33 +141,6 @@ export const useStudentStore = defineStore('students', () => {
   //     handleError(error);
   //   }
   // };
-  const updateEmergencyContacts = async (cos_cen_id, cos_cen_code, cos_cen_name ) => {
-    try {
-      axios.defaults.headers.common['Authorization'] = 'Bearer ' + authStore.token;
-      const res = await axios({
-        url: `${API_URL}/${cos_cen_id}`, 
-        method: 'PUT', 
-        headers: {
-          Authorization: 'Bearer ' + authStore.token
-        },
-        data: {
-          cos_cen_code: cos_cen_code,
-          cos_cen_name: cos_cen_name
-        }
-      });
-      
-      if (res.data.status === false) {
-        showSwalAlert(res.data.message, 'error','error');
-      } else if (res.data.status === true) {
-        showSwalAlert(res.data.message, 'success','success');
-        console.log(res.data.message);
-      }
-
-    } catch (error) {
-    console.error(error.response?.data || error);
-    handleError(error);
-    }
-  };
 
 
   const handleError = (error) => {
@@ -190,7 +163,6 @@ export const useStudentStore = defineStore('students', () => {
     readStudents,
     students,
     student,
-    showStudent,
-    updateEmergencyContacts
+    showStudent
   }
 })
