@@ -8,12 +8,12 @@
     <div class="row p-3">
       <div class="col-6-5 shadow p-3 bg-body rounded mb-5 mr-2">
         <div class="row mt-3 ms-2">
-          <div class="col-6">
+          <div class="col-6 " >
             <label class="form-label">{{ $t('profile.socialStratum') }}</label>
             <input disabled class="form-control" type="text" v-model="stu_stratum" />
           </div>
 
-          <div class="col-6">
+          <div class="col-6 ">
             <label class="form-label">{{ $t('profile.relationship') }}</label>
             <input disabled class="form-control" type="text" v-model="civ_sta_name" />
           </div>
@@ -37,11 +37,11 @@
           </div>
           <div class="col-12">
             <label class="form-label mt-3">{{ $t('profile.studentType') }}</label>
-            <input disabled class="form-select" type="text" v-model="stu_typ_name" />
+            <input disabled class="form-control mb-5" type="text" v-model="stu_typ_name" />
           </div>
         </div>
       </div>
-      <div class="col-5 shadow p-3 bg-body rounded mb-5">
+      <div class="col-5 shadow rounded-4 p-3 bg-body rounded mb-5">
         <tableDiseases
         :disease="disease"
         
@@ -55,7 +55,7 @@
 </template>
 
 <script setup>
-import { ref, defineProps, watchEffect, computed } from 'vue'
+import { ref, defineProps, watchEffect} from 'vue'
 import tableDiseases from "@/components/students/studentsTables/studentDiseaseTables.vue"
 import tableAllergies from "@/components/students/studentsTables/studentAllergiesTable.vue"
 // import { useGeneralStore } from '../../stores/generalStore.js'

@@ -138,7 +138,7 @@
   </div>
 </template>
 <script setup>
-import { ref, onMounted, computed, watch} from 'vue'
+import { computed} from 'vue'
 import { usePersonsStore } from '@/stores/personsStore.js'
 const profileStore = usePersonsStore()
 

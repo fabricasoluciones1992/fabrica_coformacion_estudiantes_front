@@ -67,7 +67,16 @@
     "englishLevel":"English Level",
     "monetaryState":"Monetary State",
     "status":"Status",
-    "actions":"Actions"
+    "actions":"Actions",
+    "documents":"Documents",
+    "updatedFiles":"Files",
+    "documentsFiles":{
+      "CV":"CV",
+      "documentCopy":"Document copy",
+      "epsCertification":"Eps Certification",
+      "bankCertification":"Bank Certification",
+      "blankPhoto":"White background photo"
+    }
 
   },
   "cofHistory":{

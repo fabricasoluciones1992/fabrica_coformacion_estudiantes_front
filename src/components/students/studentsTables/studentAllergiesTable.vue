@@ -1,8 +1,8 @@
 <template>
-    <table class="table table-striped border rounded-3 shado">
+    <table class="table table-striped   shadow-sm ">
         <thead>
           <tr>
-            <th scope="col">{{$t('profile.diseases')}} </th>
+            <th scope="col">{{$t('profile.allergies')}} </th>
           </tr>
         </thead>
         <tbody>
@@ -22,7 +22,7 @@
 </template>
 
 <script setup>
-import { ref, defineProps, watchEffect, computed } from 'vue'
+import { ref, defineProps, computed } from 'vue'
 import PaginatedComponent from "@/components/PaginationComponent.vue"
 
 
@@ -34,7 +34,7 @@ const props = defineProps({
   
 })
 const currentPage = ref(1)
-const itemsPerPage = 10
+const itemsPerPage = 2
 // const allergie = ref(props.disease.allergies || [])
 const allergies = ref(props.allergies || [])
 console.log(props.allergies)

@@ -9,7 +9,6 @@ import Swal from 'sweetalert2'
 export const useStudentStore = defineStore('students', () => {
   const authStore = useAuthStore()
  const API_URL = 'http://127.0.0.1:8088/api'
-  const SEC_API_IRL = 'http://127.0.0.1:8000/api'
   const students = ref([])
   const student = ref([]) 
 
@@ -17,7 +16,7 @@ export const useStudentStore = defineStore('students', () => {
   const readStudents = async () => {
     try {
       const res = await axios({
-        url: `${SEC_API_IRL}/students`,
+        url: `/students`,
         method: 'GET',    
         headers: {
           Authorization: 'Bearer ' + authStore.token
@@ -70,7 +69,7 @@ export const useStudentStore = defineStore('students', () => {
     try {
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + authStore.token
       const res = await axios({
-        url: `${SEC_API_IRL}/students/${stu_id}`,
+        url: `/students/${stu_id}`,
         method: 'GET',
         headers: {
           Authorization: 'Bearer ' + authStore.token

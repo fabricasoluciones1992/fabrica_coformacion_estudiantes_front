@@ -3,7 +3,7 @@
     <LoadingComponent></LoadingComponent>
   </div>
   <div v-else class="container">
-    <h2 class="mb-4 mt-5 text-danger text-center">{{ studentsStore.student.per_name }} {{ studentsStore.student.per_lastname }}</h2>
+    <h2 class="mb-4 mt-5 text-danger text-center">{{ studentItem.per_name }} {{ studentItem.per_lastname }}</h2>
     <!-- Nav tabs -->
     <ul class="nav nav-tabs" id="myTab" role="tablist">
       <li class="nav-item" role="presentation">
@@ -120,14 +120,15 @@
         :loading="loading"
       ></StudentAcademicInfoComponent>
 
-      <!-- <StudentDocumentsComponent :student="studentItem"></StudentDocumentsComponent> -->
+      <StudentDocumentsComponent :student="studentItem">
+
+      </StudentDocumentsComponent>
     </form>
   </div>
 </template>
 <script setup>
 import { onMounted, ref, watch } from 'vue'
-import { validateFields } from '@/validations.js'
-import { useStudentStore } from '@/stores/studentsStores/studentsStore.js'
+
 import { useGeneralStore } from '@/stores/generalStore.js'
 import { usePersonsStore } from '@/stores/personsStore.js'
 import StudentInfoComponent from '@/components/students/studentsFormOne.vue'
@@ -139,13 +140,12 @@ import StudentDocumentsComponent from '@/components/students/StudentDocumentsCom
 import LoadingComponent from '@/components/LoadingComponent.vue'
 // import { useRoute } from 'vue-router'
 
-const studentsStore = useStudentStore()
+
 const generalStore = useGeneralStore()
 const personStore = usePersonsStore()
 
 // const route = useRoute()
 
-const per_name = ref('')
 const studentItem = ref('')
 const loading = ref(false)
 // const loadingButton = ref(false)
@@ -233,8 +233,11 @@ watch(
   background-color: var(--blue-color);
 }
 .custom-nav-link {
+  border-left: 1px solid rgb(28, 26, 185);
+  border-top: 1px solid rgb(28, 26, 185);
   color: black; /* Color del texto para los botones inactivos */
 }
+
 .custom-nav-link.active {
   background-color: var(--button-red-color); /* Color de fondo para el botón activo */
   color: #ffffff; /* Color del texto para el botón activo */

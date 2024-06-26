@@ -80,7 +80,16 @@
     "actions":"Acciones",
     "btnViewStudents":"Ver Estudiante",
     "btnViewCofStudents":"Ver Coformacion",
-    "studentAge":"Años"
+    "studentAge":"Años",
+    "documents":"Documentos",
+    "updatedFiles":"Archivos",
+    "documentsFiles":{
+      "CV":"CV",
+      "documentCopy":"Copia del documento",
+      "epsCertification":"Certificación de EPS",
+      "bankCertification":"Cerftificación de bancaria",
+      "blankPhoto":"Foto con Fondo blanco"
+    }
   },
   "cofHistory":{
     "companies":{
