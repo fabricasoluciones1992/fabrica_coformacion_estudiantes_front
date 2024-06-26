@@ -10,6 +10,7 @@
           <div class="row shadow p-3 bg-body rounded">
             <div class="col-4 mb-3">
               <img
+               :src="profileImage"
                 class="figure-img border rounded shadow img-fluid object-fit-cover img_height"
                 :alt="$t('profile.photoAlt')"
               />
@@ -25,6 +26,7 @@
                   type="text"
                   class="form-control shadow"
                   aria-describedby="NameHelp"
+                  :value="company_item.value.com_name"
                 />
               </div>
 
@@ -218,3 +220,22 @@
       </div>
     </div>
   </template>
+
+  <script setup>
+
+  import { ref, defineProps, watchEffect, computed } from 'vue';
+
+  const props = defineProps({
+  company_info: Array
+  })
+
+  const company_item = ref(props.company_info || '')
+
+  const profileImage = computed(() => company_item.value.com_photo
+ )
+
+  watchEffect(() => {
+    company_item.value = props.company_info || ''
+  })
+
+ </script>

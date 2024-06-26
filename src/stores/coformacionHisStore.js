@@ -15,7 +15,7 @@ export const useCoformacionHisStore = defineStore('coformacionHis', () => {
   const authStore = useAuthStore()
 //  const user = CryptoJS.AES.decrypt(localStorage.getItem('id'), secretKey).toString(CryptoJS.enc.Utf8);
   const URL_COFORMACION= `/coformacions`
-  const URL_PROCESS = `/coformacions/processes`
+  const URL_PROCESS = `/coformacion/processes`
   const coformacion = ref([])
   const processes = ref([])
 
@@ -93,7 +93,8 @@ const readCoformacion = async (per_document) => {
   try {
     axios.defaults.headers.common['Authorization'] ='Bearer ' + authStore.token;
     const response = await axios.get(`${URL_COFORMACION}/${per_document}`);
-      coformacion.value = response.data.data
+    coformacion.value = response.data.data
+    console.log(coformacion.value)
   } catch (error) {
     handleError(error);
   }
@@ -104,6 +105,7 @@ const readProcess = async (per_document) => {
       axios.defaults.headers.common['Authorization'] ='Bearer ' + authStore.token;
       const response = await axios.get(`${URL_PROCESS}/${per_document}`);
         processes.value = response.data.data
+        console.log(processes.value)
     } catch (error) {
       handleError(error);
     }

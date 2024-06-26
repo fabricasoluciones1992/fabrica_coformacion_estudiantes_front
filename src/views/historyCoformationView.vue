@@ -68,15 +68,22 @@
         action=""
         class="tab-content my-5"
       >
-        <actualCompany></actualCompany>
+        <actualCompany
+        :company_info = "actCompany"
+        ></actualCompany>
 
-        <recentCompany></recentCompany>
+        <recentCompany
+        :company_info = "recentComp"
+        ></recentCompany>
 
-        <recentProcess></recentProcess>
+        <recentProcess
+        :company_info = "recentProc"
+        ></recentProcess>
 
-        <Companyhistory></Companyhistory>
-
-        <Processhistory></Processhistory>
+        <history
+        :company_history = "comHistory"
+        :process_history = "processHistory"
+        ></history>
         
       </form>
     </div>
@@ -85,23 +92,58 @@
 
   <script setup>
   import { onMounted, ref } from 'vue'
+  import { usePersonsStore } from '@/stores/personsStore.js'
   import LoadingComponent from '@/components/LoadingComponent.vue'
   import actualCompany from '../components/coformacionHistory/actualCompanyComponent.vue'
   import recentCompany from '../components/coformacionHistory/company/recentCompanyComponent.vue'
   import recentProcess from '../components/coformacionHistory/process/recentProcessComponent.vue'
-  import Companyhistory from '../components/coformacionHistory/company/companiesHistoryComponent.vue'
-  import Processhistory from '../components/coformacionHistory/process/processHistoryComponent.vue'
+  import history from '../components/coformacionHistory/coformacionHis.vue'
   import { useCoformacionHisStore } from '../stores/coformacionHisStore.js'
 
   const loading = ref(false)
   const coformacionStore = useCoformacionHisStore()
+  const personStore = usePersonsStore()
+  const actCompany = ref('')
+  const recentComp = ref('')
+  const comHistory = ref('')
+  const recentProc = ref('')
+  const processHistory = ref('')
 
   onMounted(async () => {
-
-   await coformacionStore.readCoformacion()
-   await coformacionStore.readProcess()
-
+   await personStore.readPersonDetailsById()
+   const student = personStore.persons
+   await coformacionStore.readCoformacion(student.per_document)
+   actCompany.value = coformacionStore.coformacion[0]
+   recentComp.value = coformacionStore.coformacion[1]
+   comHistory.value = coformacionStore.coformacion
+   await coformacionStore.readProcess(student.per_document)
+   recentProc.value = coformacionStore.processes[0]
+   processHistory.value = coformacionStore.processes
   })
 
 
 </script>
+
+<style lang="scss" scoped>
+.blue-color-bg {
+  background-color: var(--blue-color);
+}
+.custom-nav-link {
+  color: black;
+  border: 0.2px solid black;/* Color del texto para los botones inactivos */
+}
+.custom-nav-link.active {
+  background-color: var(--button-red-color); /* Color de fondo para el botón activo */
+  color: #ffffff; /* Color del texto para el botón activo */
+}
+
+.custom-nav-link:hover {
+  background-color: var(--button-red-color); /* Color de fondo cuando el botón está en hover */
+  color: #ffffff; /* Color del texto cuando el botón está en hover */
+}
+
+.custom-nav-link:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.25); /* Sombra de enfoque */
+}
+</style>
