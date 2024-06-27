@@ -83,8 +83,9 @@
     "studentAge":"Años",
     "documents":"Documentos",
     "updatedFiles":"Archivos",
+    "uploadFiles":"Subir archivo",
     "documentsFiles":{
-      "CV":"CV",
+      "CV":"Hoja de vida",
       "documentCopy":"Copia del documento",
       "epsCertification":"Certificación de EPS",
       "bankCertification":"Cerftificación de bancaria",

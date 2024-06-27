@@ -13,74 +13,8 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>
-              <i class="ri-file-pdf-2-line icon-red"></i> {{ $t('students.documentsFiles.CV') }}
-            </td>
-            <td>
-              <button
-                class="shadow btn btn-danger"
-                type="button"
-                data-bs-toggle="modal"
-                data-bs-target="#docModal"
-              >
-                {{ $t('buttons.edit') }}  
-              </button>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <i class="ri-file-pdf-2-line icon-red"></i>
-              {{ $t('students.documentsFiles.documentCopy') }}
-            </td>
-            <td>
-              <button
-              class="shadow btn btn-danger"
-              type="button"
-              data-bs-toggle="modal"
-              data-bs-target="#docModal"
-            >
-              {{ $t('buttons.edit') }}
-            </button>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <i class="ri-file-pdf-2-line icon-red"></i
-              >{{ $t('students.documentsFiles.epsCertification') }}
-            </td>
-            <td>
-              <button
-                class="shadow btn btn-danger"
-                type="button"
-                data-bs-toggle="modal"
-                data-bs-target="#docModal"
-              >
-                {{ $t('buttons.edit') }}
-              </button>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <i class="ri-file-pdf-2-line icon-red"></i>
-              {{ $t('students.documentsFiles.bankCertification') }}
-            </td>
-            <td>
-              <button
-              class="shadow btn btn-danger"
-              type="button"
-              data-bs-toggle="modal"
-              data-bs-target="#docModal"
-            >
-              {{ $t('buttons.edit') }}
-            </button>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <i class="ri-file-pdf-2-line icon-red"></i>
-              {{ $t('students.documentsFiles.blankPhoto') }}
-            </td>
+          <tr v-for="(document, index) in documents" :key="index">
+            <td><i class="ri-file-pdf-2-line icon-red"></i> {{document.document}}</td>
             <td>
               <button
                 class="shadow btn btn-danger"
@@ -97,22 +31,41 @@
     </div>
   </div>
 
-  <modalDocuments
-  :doc_url="doc_url"
-  :edition="true"
-  />
+  <modalDocuments :editing="true" />
 </template>
 
-
-
-
 <script setup>
-
-import { ref } from 'vue'
 import modalDocuments from '@/components/students/studentsDocuments/ModalDocuments.vue'
+import { ref } from 'vue'
+import { useI18n } from 'vue-i18n'
+const { t } = useI18n()
 
+const documents = ref([
+{
+  document: ref(t('students.documentsFiles.CV'))
+},
+{
+  document: t('students.documentsFiles.documentCopy')
+}
+,
+{
+  document: t('students.documentsFiles.epsCertification')
+}
+,
+{
+  document: t('students.documentsFiles.bankCertification')
+}
+,
+{
+  document: t('students.documentsFiles.blankPhoto')
+}
+])
 
-const doc_url = ref('src/uuuu')
+console.log(documents.value)
+// documentCopy: t('students.documentsFiles.documentCopy'),
+//   epsCertification: t('students.documentsFiles.epsCertification'),
+//   bankCertification: t('students.documentsFiles.bankCertification'),
+//   blankPhoto: t('students.documentsFiles.blankPhoto')
 </script>
 <style lang="scss" scoped>
 .blue-color-bg {

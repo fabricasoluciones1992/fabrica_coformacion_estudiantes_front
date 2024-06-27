@@ -138,6 +138,7 @@ import StudentAditInfoComponent from '@/components/students/StudentAditInfoCompo
 import StudentAcademicInfoComponent from '@/components/students/StudentAcademicInfoComponent.vue'
 import StudentDocumentsComponent from '@/components/students/StudentDocumentsComponent.vue'
 import LoadingComponent from '@/components/LoadingComponent.vue'
+
 // import { useRoute } from 'vue-router'
 
 
