@@ -99,9 +99,15 @@
      "reason":"Afiliation Reason",
      "to":"To"
     },
+    "processes":{
+      "proDate":"Process Date",
+      "proType":"Process Type",
+      "proPeriod":"Process Period",
+      "proResult":"Process Result"
+    },
     "cards":{
       "actComp":"Actual Company",
-      "recentComp":"Recent Company",
+      "recentComp":"Most Recent Company",
       "recentProcess":"Most Recent Process",
       "historyProcess":"Process History",
       "history":"History",

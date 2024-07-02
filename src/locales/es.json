@@ -111,9 +111,15 @@
      "reason":"Razón de vinculación a la empresa",
       "to":"a"
     },
+    "processes":{
+      "proDate":"Fecha proceso",
+      "proType":"Tipo de proceso",
+      "proPeriod":"Periodo del proceso",
+      "proResult":"Resultado del proceso"
+    },
     "cards":{
       "actComp":"Empresa Actual",
-      "recentComp":"Empresa reciente",
+      "recentComp":"Empresa más reciente",
       "recentProcess":"Proceso Reciente",
       "historyProcess":"Historial de procesos",
       "history":"Historial",

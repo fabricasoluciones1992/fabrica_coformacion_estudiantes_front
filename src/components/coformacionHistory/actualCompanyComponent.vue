@@ -1,5 +1,9 @@
 <template>
+   <div v-if="loading">
+      <LoadingComponent></LoadingComponent>
+    </div>
     <div
+      v-else
       class="tab-pane fade show active"
       id="actualCompany"
       role="tabpanel"
@@ -10,7 +14,7 @@
           <div class="row shadow p-3 bg-body rounded">
             <div class="col-4 mb-3">
               <img
-               :src="profileImage"
+               :src="companyImage"
                 class="figure-img border rounded shadow img-fluid object-fit-cover img_height"
                 :alt="$t('profile.photoAlt')"
               />
@@ -26,7 +30,7 @@
                   type="text"
                   class="form-control shadow"
                   aria-describedby="NameHelp"
-                  :value="company_item.value.com_name"
+                  :value="company_item.com_name"
                 />
               </div>
 
@@ -39,6 +43,7 @@
                   type="text"
                   class="form-control shadow"
                   aria-describedby="NameHelp"
+                  :value="company_item.com_reason"
                 />
               </div>
   
@@ -51,6 +56,7 @@
                   type="text"
                   class="form-control shadow"
                   aria-describedby="NameHelp"
+                  :value="company_item.com_direction"
                 />
               </div>
             </div>
@@ -65,6 +71,7 @@
                   type="date"
                   class="form-control shadow"
                   aria-describedby="NameHelp"
+                  :value="company_item.peri_start"
                 />
               </div>
   
@@ -77,57 +84,22 @@
                   type="date"
                   class="form-control shadow"
                   aria-describedby="NameHelp"
+                  :value="company_item.peri_end"
                 />
               </div>
   
-              <div class="col-6">
-                <label for="exampleInputName1" class="form-label mt-3">{{
-                  $t('cofHistory.companies.workDays')
-                }}</label>
-                 <div class="row">
-                <div class="col-5">
-                  <input
-                  disabled
-                    type="text"
-                    class="form-select shadow"
-                    aria-describedby="NameHelp"
-                  />
-                </div>
-                {{  $t('cofHistory.companies.to') }}
-                <div class="col-5">
-                  <input
-                  disabled
-                    type="text"
-                    class="form-select shadow"
-                    aria-describedby="NameHelp"
-                  />
-                </div>
-              </div>
-              </div>
   
               <div class="col-6">
                 <label for="exampleInputName1" class="form-label mt-3">{{
                   $t('cofHistory.companies.workSchedule')
                 }}</label>
-                 <div class="row">
-                <div class="col-5">
                   <input
-                  disabled
-                    type="text"
-                    class="form-select shadow"
-                    aria-describedby="NameHelp"
-                  />
-                </div>
-                {{  $t('cofHistory.companies.to') }}
-                <div class="col-5">
-                  <input
-                  disabled
-                    type="text"
-                    class="form-select shadow"
-                    aria-describedby="NameHelp"
-                  />
-                </div>
-              </div>
+                disabled
+                  type="text"
+                  class="form-control shadow"
+                  aria-describedby="NameHelp"
+                  :value="company_item.cof_schedule"
+                />
               </div>
 
               <div class="col-6">
@@ -139,6 +111,7 @@
                   type="text"
                   class="form-select shadow"
                   aria-describedby="NameHelp"
+                  :value="company_item.vin_typ_name"
                 />
               </div>
   
@@ -151,6 +124,7 @@
                   type="text"
                   class="form-control shadow"
                   aria-describedby="NameHelp"
+                  :value="company_item.cof_pay"
                 />
               </div>
 
@@ -163,6 +137,7 @@
                   type="text"
                   class="form-select shadow"
                   aria-describedby="NameHelp"
+                  :value="company_item.pay_typ_name"
                 />
               </div>
   
@@ -175,6 +150,7 @@
                   type="text"
                   class="form-select shadow"
                   aria-describedby="NameHelp"
+                  :value="company_item.pay_tim_name"
                 />
               </div>
 
@@ -187,6 +163,7 @@
                   type="text"
                   class="form-control shadow"
                   aria-describedby="NameHelp"
+                  :value="company_item.tut_name"
                 />
               </div>
   
@@ -199,10 +176,11 @@
                   type="text"
                   class="form-control shadow"
                   aria-describedby="NameHelp"
+                  :value="company_item.emp_per_name + company_item.emp_per_lastname"
                 />
               </div>
 
-              <div class="col-12">
+              <div class="col-6 pb-5">
                 <label for="exampleInputName1" class="form-label mt-3">{{
                   $t('cofHistory.companies.reason')
                 }}</label>
@@ -210,6 +188,7 @@
                 disabled
                   type="text"
                   class="form-control shadow"
+                  :value="company_item.vin_reason"
                 />
               </div>
 
@@ -224,18 +203,21 @@
   <script setup>
 
   import { ref, defineProps, watchEffect, computed } from 'vue';
+  import LoadingComponent from '@/components/LoadingComponent.vue'
 
   const props = defineProps({
   company_info: Array
   })
 
   const company_item = ref(props.company_info || '')
+  const loading = ref(false)
 
-  const profileImage = computed(() => company_item.value.com_photo
+  const companyImage = computed(() => company_item.value.com_photo
  )
 
   watchEffect(() => {
     company_item.value = props.company_info || ''
+    loading.value = company_item.value ? false : true
   })
 
  </script>

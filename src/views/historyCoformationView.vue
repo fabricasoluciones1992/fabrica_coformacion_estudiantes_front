@@ -1,10 +1,8 @@
 <template>
-    <div v-if="loading">
-      <LoadingComponent></LoadingComponent>
-    </div>
-    <div v-else class="m-sm-0 m-md-5">
+    <div class="m-sm-0 m-md-5">
     <div class="container-fluid">
       <h2 class="text-danger text-center"></h2>
+
       <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item" role="presentation">
           <button
@@ -73,11 +71,11 @@
         ></actualCompany>
 
         <recentCompany
-        :company_info = "recentComp"
+        :recentCompany = "recentComp"
         ></recentCompany>
 
         <recentProcess
-        :company_info = "recentProc"
+        :recentProc = "recentProc"
         ></recentProcess>
 
         <history
@@ -93,14 +91,12 @@
   <script setup>
   import { onMounted, ref } from 'vue'
   import { usePersonsStore } from '@/stores/personsStore.js'
-  import LoadingComponent from '@/components/LoadingComponent.vue'
   import actualCompany from '../components/coformacionHistory/actualCompanyComponent.vue'
   import recentCompany from '../components/coformacionHistory/company/recentCompanyComponent.vue'
   import recentProcess from '../components/coformacionHistory/process/recentProcessComponent.vue'
   import history from '../components/coformacionHistory/coformacionHis.vue'
   import { useCoformacionHisStore } from '../stores/coformacionHisStore.js'
 
-  const loading = ref(false)
   const coformacionStore = useCoformacionHisStore()
   const personStore = usePersonsStore()
   const actCompany = ref('')
