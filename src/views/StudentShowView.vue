@@ -3,7 +3,9 @@
     <LoadingComponent></LoadingComponent>
   </div>
   <div v-else class="container">
-    <h2 class="mb-4 mt-5 text-danger text-center">{{ studentItem.per_name }} {{ studentItem.per_lastname }}</h2>
+    <h2 class="mb-4 mt-5 text-danger text-center">
+      {{ studentItem.per_name }} {{ studentItem.per_lastname }}
+    </h2>
     <!-- Nav tabs -->
     <ul class="nav nav-tabs" id="myTab" role="tablist">
       <li class="nav-item" role="presentation">
@@ -120,9 +122,9 @@
         :loading="loading"
       ></StudentAcademicInfoComponent>
 
-      <StudentDocumentsComponent :student="studentItem">
-
-      </StudentDocumentsComponent>
+      <StudentDocumentsComponent
+      :studentItem="studentItem"
+    ></StudentDocumentsComponent>
     </form>
   </div>
 </template>
@@ -141,26 +143,26 @@ import LoadingComponent from '@/components/LoadingComponent.vue'
 
 // import { useRoute } from 'vue-router'
 
-
 const generalStore = useGeneralStore()
 const personStore = usePersonsStore()
 
 // const route = useRoute()
 
 const studentItem = ref('')
+
 const loading = ref(false)
 // const loadingButton = ref(false)
 console.log(personStore.stu_id)
 console.log(loading.value)
 onMounted(async () => {
   loading.value = true
+
   await generalStore.readRelationships()
   await personStore.readPersonDetailsById()
   studentItem.value = personStore.persons
   await generalStore.readContacts(personStore.persons.per_id)
 
-  console.log(studentItem.value)
-  
+
   for (let i = 0; i < studentItem.value.personal_contacts.telephones.length; i++) {
     // console.log(studentItem.value.personal_contacts.telephones[i]);
     switch (studentItem.value.personal_contacts.telephones[i].tel_description) {
@@ -217,10 +219,9 @@ onMounted(async () => {
 watch(
   () => personStore.persons.use_photo,
   (newValue) => {
-    personStore.value = newValue;
+    personStore.value = newValue
   }
-);
-
+)
 
 // const validateNameWrapper = () => {
 //   const fields = [{ name: 'per_name', value: per_name.value }]

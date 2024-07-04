@@ -17,6 +17,7 @@ export const useGeneralStore = defineStore('general_store', () => {
   const careers = ref([])
   const genders = ref([])
   const relationships = ref([])
+  const documents = ref([])
 
   const readDocTypes = async () => {
     try {
@@ -141,6 +142,29 @@ const readLocalities = async () => {
       handleError(error)
     }
   };
+  const readDocuments = async (stu_id) => {
+    try {
+      axios.defaults.headers.common['Authorization'] ='Bearer ' + authStore.token;
+      const res = await axios.get(`/documents/${stu_id}`);
+      documents.value = res.data.data.map((item) => {
+        return {
+          doc_id: item.doc_id,
+          doc_type: item.doc_type,
+          doc_url: item.doc_url,
+          doc_name: item.doc_name,
+          doc_status: item.doc_status,
+          doc_date: item.doc_date,
+          use_mail: item.use_mail,
+          stu_id: item.stu_id,
+          };
+    });
+    console.log(documents.value)
+      return documents.value;
+    } catch (error) {
+      handleError(error)
+    }
+  };
+
 
   const readGenders = async () => {
     try {
@@ -202,5 +226,7 @@ const readLocalities = async () => {
     genders,
     readRelationships,
     relationships,
+    documents,
+    readDocuments
   }
 })

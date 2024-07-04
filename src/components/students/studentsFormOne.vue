@@ -156,18 +156,18 @@ const profileImage = computed(() => profileStore.persons.use_photo
 // );
 
 
-const idAbr = computed(() => {
-  switch (profileStore.persons.doc_typ_id) {
-    case 1:
-      return "C.C"
-    case 2:
-      return "T.I"
-    case 3:
-      return "C.E"
-    default:
-      return "Indefinido";
-  }
-})
+  const idAbr = computed(() => {
+    switch (profileStore.persons.doc_typ_id) {
+      case 1:
+        return "C.C"
+      case 2:
+        return "T.I"
+      case 3:
+        return "C.E"
+      default:
+        return "Indefinido";
+    }
+  })
 
 const age = computed(() =>{
   const today = new Date()
@@ -188,6 +188,7 @@ console.log(profileStore)
 
 <style>
 .img_height {
+  width: 400px;
   height: 110%;
 }
 </style>

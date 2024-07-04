@@ -227,7 +227,8 @@
   "warning": "¡Atención!",
   "warningLabel": "Tu sesión está a punto de expirar por inactividad.",
   "confirmLabel": "Mantener la sesión",
-  "changePassword":"Hubo un error al cambiar la contraseña. Por favor, inténtalo de nuevo."
+  "changePassword":"Hubo un error al cambiar la contraseña. Por favor, inténtalo de nuevo.",
+  "loading":"Subiendo"
 
 },
 "messageSuccess":{

@@ -219,21 +219,58 @@ export const usePersonsStore = defineStore('persons', () => {
     }
   };
 
-  const uploadFiles = async (doc_url, doc_type, doc_status, doc_date, stu_id) =>{
+  const   uploadFiles = async (doc_url, doc_type, doc_status, doc_date) =>{
     try {
-      console.log(doc_url, doc_type, doc_status, doc_date, stu_id)
+      console.log(doc_url, doc_type, doc_status, doc_date, persons.value.stu_id)
       const formData = new FormData();
       formData.append('doc_url', doc_url);  // doc_url debería ser un objeto File
       formData.append('doc_type', doc_type);
       formData.append('doc_status', doc_status);
       formData.append('doc_date', doc_date);
-      formData.append('stu_id', stu_id);
+      formData.append('stu_id', persons.value.stu_id);
       formData.append('use_id', readUserLocal());
       formData.append('acc_administrator', 1);
 
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + authStore.token;
       const res = await axios({
         url: `/documents`, 
+        method: 'POST', 
+        headers: {
+          Authorization: 'Bearer ' + authStore.token,
+           'Content-Type': 'multipart/form-data'
+        },
+        data: formData
+        
+      });
+      
+      if (res.data.status === false) {
+        showSwalAlert(res.data.message, 'error','error');
+      } else if (res.data.status === true) {
+        showSwalAlert(res.data.message, 'success','success');
+        console.log(res.data.message);
+      }
+
+     readPersonDetailsById()
+    } catch (error) {
+    console.error(error.response?.data || error);
+    handleError(error);
+    }
+  
+  }
+
+  const updateFiles = async (doc_url, doc_status, doc_id) =>{
+    try {
+      console.log(doc_url,  doc_status, persons.value.stu_id)
+      const formData = new FormData();
+      formData.append('doc_url', doc_url);  // doc_url debería ser un objeto File
+      formData.append('doc_status', doc_status);
+      formData.append('stu_id', persons.value.stu_id);
+      formData.append('use_id', readUserLocal());
+      formData.append('acc_administrator', 1);
+
+      axios.defaults.headers.common['Authorization'] = 'Bearer ' + authStore.token;
+      const res = await axios({
+        url: `/update/documents/${doc_id}`, 
         method: 'POST', 
         headers: {
           Authorization: 'Bearer ' + authStore.token,
@@ -269,6 +306,7 @@ export const usePersonsStore = defineStore('persons', () => {
     persons,
     updateEmergencyContacts,
     updateContactInfo,
-    uploadFiles
+    uploadFiles,
+    updateFiles
   }
 })
